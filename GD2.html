@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Guided 2</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>Halo, Aku {{ pria.nama }} dan Npm saya {{ pria.npm }}</h2>
+        <p>
+            Umur saya {{ pria.umur }} tahun dan aku bekerja 
+            sebagai seorang {{ pria.pekerjaan }}.
+            <br>
+            Aku <span v-if="pria.status == 'menikah'">
+                Sudah Menikah.
+            </span>
+            <span v-else-if="pria.status == 'belum menikah'">
+                masih jomblo gan.
+            </span>
+        </p>
+        <div>
+            <button @click="kurangiUmur">Kurangi Umurku</button>
+            <button @click="tambahUmur">Tambah Umurku</button>
+        </div>
+        <p v-show="pria.skills">Kemampuanku adalah :</p>
+        <ul v-for="skill in pria.skills" :key="skill">
+            <li>{{skill}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            pria: {
+                nama: 'Jovan Chundhana',
+                npm: '180709784',
+                umur: 20,
+                pekerjaan: 'Data Scientist',
+                skills: [
+                    'Perhitungan',
+                    'Analisa',
+                    'Coding',
+                ],
+                status: 'belum menikah'
+            }
+        },
+        methods: {
+            tambahUmur(){
+                this.pria.umur++;
+            },
+            kurangiUmur(){
+                this.pria.umur--;
+            },
+        },
+    });
+</script>
+
+</html>
